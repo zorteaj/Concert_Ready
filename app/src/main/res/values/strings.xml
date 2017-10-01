@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Concert Ready</string>
+    <string name="search_hint">Search artists</string>
+</resources>
