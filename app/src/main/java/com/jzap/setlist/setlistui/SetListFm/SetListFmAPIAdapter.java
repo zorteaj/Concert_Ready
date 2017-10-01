@@ -18,6 +18,8 @@ import com.jzap.setlist.setlistui.SetListFm.Parser.Parser;
 import com.jzap.setlist.setlistui.SetListFm.Parser.SetListParser;
 import com.jzap.setlist.setlistui.SetListFm.Parser.TourNameParser;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,21 +38,46 @@ public class SetListFmAPIAdapter {
     }
 
     public void requestTourName(Callback callback, String artist) {
-        String url = "https://api.setlist.fm/rest/1.0/search/setlists?artistName=" + artist + "&p=1";
-        TourNameParser tourNameParser = new TourNameParser();
-        request(callback, url, tourNameParser);
+        //String url = "https://api.setlist.fm/rest/1.0/search/setlists?artistName=" + artist + "&p=1";
+        StringBuilder url = new StringBuilder();
+        try {
+            url.append("https://api.setlist.fm/rest/1.0/search/setlists?artistName=");
+            url.append(URLEncoder.encode(artist, "UTF-8"));
+            url.append("&p=1");
+            TourNameParser tourNameParser = new TourNameParser();
+            request(callback, url.toString(), tourNameParser);
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "Request Tour Name error: " + e.toString());
+        }
     }
 
     public void requestTourPage(Callback callback, Playlist playlist, String tour, int pageNum) {
-        String url = "https://api.setlist.fm/rest/1.0/search/setlists?artistName=" + playlist.getArtist() + "&p=" + pageNum + "&tourName=" + tour;
-        SetListParser setListParser = new SetListParser(playlist, tour);
-        request(callback, url, setListParser);
+        //String url = "https://api.setlist.fm/rest/1.0/search/setlists?artistName=" + playlist.getArtist() + "&p=" + pageNum + "&tourName=" + tour;
+        StringBuilder url = new StringBuilder();
+        try {
+            url.append("https://api.setlist.fm/rest/1.0/search/setlists?artistName=");
+            url.append(URLEncoder.encode(playlist.getArtist(), "UTF-8"));
+            url.append("&p=" + pageNum + "&tourName=");
+            url.append(URLEncoder.encode(tour, "UTF-8"));
+            SetListParser setListParser = new SetListParser(playlist, tour);
+            request(callback, url.toString(), setListParser);
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "Request Tour Page error: " + e.toString());
+        }
     }
 
     public void requestArtists(Callback callback, String artist) {
-        String url = "https://api.setlist.fm/rest/1.0/search/artists?artistName=" + artist + "&p=1&sort=relevance";
-        ArtistsParser artistsParser = new ArtistsParser();
-        request(callback, url, artistsParser);
+        //String url = "https://api.setlist.fm/rest/1.0/search/artists?artistName=" + artist + "&p=1&sort=relevance";
+        StringBuilder url = new StringBuilder();
+        try {
+            url.append("https://api.setlist.fm/rest/1.0/search/artists?artistName=");
+            url.append(URLEncoder.encode(artist, "UTF-8"));
+            url.append("&p=1&sort=relevance");
+            ArtistsParser artistsParser = new ArtistsParser();
+            request(callback, url.toString(), artistsParser);
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "Request Artists error: " + e.toString());
+        }
     }
 
     public void request(final Callback callback, String url, final Parser parser) {

@@ -274,7 +274,9 @@ public class PlaylistActivity extends YouTubeBaseActivity implements YouTubePlay
                @Override
                public void onLoading() {
                    mPlayPause.setDisplayedChild(1);
-                   mPlaylist.pause();
+                   if(mPlaylist != null) {
+                       mPlaylist.pause();
+                   }
                }
 
                @Override
@@ -309,13 +311,17 @@ public class PlaylistActivity extends YouTubeBaseActivity implements YouTubePlay
                 @Override
                 public void onPlaying() {
                     mPlayPause.setDisplayedChild(0);
-                    mPlaylist.play();
+                    if(mPlaylist != null) {
+                        mPlaylist.play();
+                    }
                 }
 
                 @Override
                 public void onPaused() {
                     mPlayPause.setDisplayedChild(1);
-                    mPlaylist.pause();
+                    if(mPlaylist != null) {
+                        mPlaylist.pause();
+                    }
                 }
 
                 @Override

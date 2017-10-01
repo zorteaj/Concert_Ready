@@ -125,12 +125,12 @@ public class TourPlaylistCreator extends PlaylistCreator {
     }
 
     private void onTourPageResponse(SetListPageResponse response) {
-        if (response == null) {
+        if (response == null || response.total == 0) {
             Log.e(TAG, "Null tour page response");
             deliverResponse();
+            return;
         }
 
-        Log.d(TAG, "Tour page response artist = " + response.playlist.getArtist());
         // if this is the last page
         if (response.itemsPerPage * (response.total / response.itemsPerPage) != response.total) { // TODO: Try being a little less hacky with the math (round up to nearest itemsPerPage
             response.total = (response.itemsPerPage * (response.total / response.itemsPerPage)) - response.total;

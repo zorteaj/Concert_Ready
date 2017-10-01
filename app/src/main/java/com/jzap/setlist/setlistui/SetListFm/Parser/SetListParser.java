@@ -20,9 +20,9 @@ public class SetListParser extends Parser {
 
     private static final String TAG = Config.TAG_HEADER + "SetListParser";
     private Playlist mPlaylist;
-    private int mItemsPerPage;
-    private int mPageNum;
-    private int mTotal;
+    private int mItemsPerPage = 0;
+    private int mPageNum = 0;
+    private int mTotal = 0;
     private String mTourName;
 
     public SetListParser(Playlist playlist, String tourName) {
