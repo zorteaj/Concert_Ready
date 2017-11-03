@@ -62,17 +62,22 @@ public class MainActivity extends AppCompatActivity {
 
         setupSearchView();
 
+        /* This is the way to play a playlist on the YouTube app
+        Intent intent = createPlayPlaylistIntent(this, "PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG");
+        startActivity(intent);
+        */
+
         handleIntent(getIntent());
     }
 
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-           handleActionView(intent);
+            handleActionView(intent);
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleActionSearch(intent);
-        }
-        else if(Intent.ACTION_MAIN.equals(intent.getAction())) {
-            handleMain();
+        } else if (Intent.ACTION_MAIN.equals(intent.getAction())) {
+            // I was rejected for copyright issues, at least in part by this
+            //handleMain();
         }
     }
 
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         mYouTubeAPIAdapter = new YouTubeAPIAdapter(new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message inputMessage) {
-                switch(inputMessage.what) {
+                switch (inputMessage.what) {
                     case VIDEO_IDS_RESPONSE:
                         Log.i(TAG, "YouTube Response");
                         mSearchProgress.setVisibility(View.INVISIBLE);
@@ -189,15 +194,14 @@ public class MainActivity extends AppCompatActivity {
         new ArtistsRequestor(query, this, new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message inputMessage) {
-                switch(inputMessage.what) {
+                switch (inputMessage.what) {
                     case ARTISTS_SEARCH_RESULTS:
                         mSearchProgress.setVisibility(View.INVISIBLE);
                         List<String> results = (List<String>) inputMessage.obj;
-                        if(results == null || results.isEmpty()) {
-                            mSearchFailed.setText("Sorry, no artist matches the search \""+ mQuery +"\"");
+                        if (results == null || results.isEmpty()) {
+                            mSearchFailed.setText("Sorry, no artist matches the search \"" + mQuery + "\"");
                             mSearchFailed.setVisibility(View.VISIBLE);
-                        }
-                        else {
+                        } else {
                             startPlaylistActivity(results.get(0));
                         }
                         break;
@@ -211,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Pre-load the thumbnails before spinning up the RecyclerView
         mSearchProgress.setVisibility(View.INVISIBLE);
 
-        if(mArtistSuggestions.isEmpty()) {
-            mSearchFailed.setText("Sorry, no artists match the search \""+ mQuery +"\"");
+        if (mArtistSuggestions.isEmpty()) {
+            mSearchFailed.setText("Sorry, no artists match the search \"" + mQuery + "\"");
             mSearchFailed.setVisibility(View.VISIBLE);
             return;
         }

@@ -3,10 +3,12 @@
     package="com.jzap.setlist.setlistui">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/concert"
+        android:icon="@drawable/ptix"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
