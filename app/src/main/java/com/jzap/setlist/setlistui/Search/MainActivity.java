@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupSearchView();
 
+        //onSearchRequested();
+
         /* This is the way to play a playlist on the YouTube app
         Intent intent = createPlayPlaylistIntent(this, "PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG");
         startActivity(intent);
