@@ -59,6 +59,9 @@ public class PlaylistActivity extends YouTubeBaseActivity implements YouTubePlay
     private ImageView mSkipPrevious;
     private ImageView mSkipNext;
 
+    private TextView mInstructions;
+    private ImageView mLogo;
+
     private TextView mPlaylistArtist;
     private TextView mPlaylistEmpty;
     private boolean mEmptyPlaylist = false;
@@ -80,6 +83,9 @@ public class PlaylistActivity extends YouTubeBaseActivity implements YouTubePlay
         mPlaylistProgress = (ProgressBar) findViewById(R.id.playlistProgress);
         mPlaylistEmpty = (TextView) findViewById(R.id.playlistEmpty);
         mPlaylistEmpty.setVisibility(View.INVISIBLE);
+
+        mInstructions = (TextView) findViewById(R.id.instructions);
+        mLogo = (ImageView) findViewById(R.id.logo);
 
         mYouTubeView = (YouTubePlayerView) findViewById(R.id.youtubePlayer);
         mYouTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -193,6 +199,9 @@ public class PlaylistActivity extends YouTubeBaseActivity implements YouTubePlay
                 if (mPlaylistView != null) {
                     mPlaylistView.setVisibility(View.INVISIBLE);
                 }
+                mPlaylistEmpty.setVisibility(View.INVISIBLE);
+                mLogo.setVisibility(View.GONE);
+                mInstructions.setVisibility(View.GONE);
                 requestSongs(mArtistName);
                 mSearchView.onActionViewCollapsed();
             }

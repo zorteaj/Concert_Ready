@@ -190,7 +190,10 @@ public class Playlist {
     }
 
     public void onCurrentSongEnded() {
-        getCurrentSong().state = Song.STOPPED;
+        Song currentSong = getCurrentSong();
+        if(currentSong != null) {
+            currentSong.state = Song.STOPPED;
+        }
         if(mAdapter != null) {
             mAdapter.notifyItemChanged(mPosition);
         } else {
@@ -199,7 +202,10 @@ public class Playlist {
     }
 
     public void play() {
-        getCurrentSong().state = Song.PLAYING;
+        Song currentSong = getCurrentSong();
+        if(currentSong != null) {
+            currentSong.state = Song.PLAYING;
+        }
         if(mAdapter != null) {
             mAdapter.notifyItemChanged(mPosition);
         } else {
@@ -208,7 +214,10 @@ public class Playlist {
     }
 
     public void pause() {
-        getCurrentSong().state = Song.PAUSED;
+        Song currentSong = getCurrentSong();
+        if(currentSong != null) {
+            currentSong.state = Song.PAUSED;
+        }
         if(mAdapter != null) {
             mAdapter.notifyItemChanged(mPosition);
         } else {

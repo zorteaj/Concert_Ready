@@ -13,6 +13,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/playlistDescription"
+        android:src="@drawable/crlogo" />
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Search an artist\n\nWe'll make a playlist of songs that we think they'll play at their next show, in order of likelihood"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playlistDescription" />
+
     <android.support.v7.widget.CardView
         android:id="@+id/playlistDescription"
         android:layout_width="0dp"
@@ -90,7 +112,9 @@
         app:layout_constraintBottom_toTopOf="@+id/playerControls"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playlistDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/playlistDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/playerControls"
